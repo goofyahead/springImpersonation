@@ -1,0 +1,43 @@
+### Auth as user which id is 12345
+POST http://localhost:9999/uaa/oauth/token
+Accept: application/json
+Authorization: Basic bW9iaWxlLWNsaWVudDpwYXNzd29yZA==
+Content-Type: application/x-www-form-urlencoded
+
+username=alex&password=user_secret&grant_type=password
+
+> {% client.global.set("access_token", response.body.access_token); %}
+
+### Auth as admin
+POST http://localhost:9999/uaa/oauth/token
+Accept: application/json
+Authorization: Basic bW9iaWxlLWNsaWVudDpwYXNzd29yZA==
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=user_secret&grant_type=password
+
+> {% client.global.set("access_token", response.body.access_token); %}
+
+### Get request with a header
+GET http://localhost:8080/user/1
+on-behalf-of: 12345
+Accept: application/json
+Authorization: Bearer {{access_token}}
+
+### Get request with a header
+GET http://localhost:8080/company/1
+on-behalf-of: 12345
+Accept: application/json
+Authorization: Bearer {{access_token}}
+
+### Send POST request with json body
+POST http://localhost:8080/user
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "id": 99,
+  "name": "Alfred",
+  "surname": "Joducas Cuaq",
+  "company": "River"
+}
