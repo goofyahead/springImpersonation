@@ -29,7 +29,7 @@ public class CompanyController {
     @GetMapping("/{id}")
     @AllowImpersonation
     @JsonView(View.Public.class)
-    @PreAuthorize("hasRole('ADMIN') || (hasRole('USER') && hasAuthority('READ_COMPANY'))")
+    @PreAuthorize("hasAuthority('READ_COMPANY')")
     public String getUser(@PathVariable int id, Authentication authentication) {
         return companiesRepo.getCompany(((CustomUserDetails) authentication.getPrincipal()).getCustomerId());
     }

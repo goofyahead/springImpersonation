@@ -26,7 +26,7 @@ Authorization: Bearer {{access_token}}
 
 ### Get request with a header
 GET http://localhost:8080/company/1
-on-behalf-of: 12345
+on-behalf-of: 3333
 Accept: application/json
 Authorization: Bearer {{access_token}}
 

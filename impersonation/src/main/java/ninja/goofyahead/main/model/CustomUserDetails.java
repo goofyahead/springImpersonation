@@ -14,4 +14,5 @@ public class CustomUserDetails  {
     public Long customerId;
     public String location;
     public String username;
+    public boolean isAdminImpersonating;
 }
